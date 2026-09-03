@@ -5,14 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, X } from "lucide-react";
-import {
-  ApplicationValues,
-  employmentTypes,
-  loanTypes,
-  stepOneSchema,
-  stepThreeSchema,
-  stepTwoSchema,
-} from "@/lib/validations";
+import { ApplicationValues, employmentTypes, loanTypes, stepOneSchema, stepThreeSchema, stepTwoSchema } from "@/lib/validations";
 import { Input, SelectField } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { addLead } from "@/lib/leads-store";
@@ -105,11 +98,7 @@ export function LoanApplicationModal({ isOpen, onClose, presetLoanType }: Props)
           transition={{ type: "spring", stiffness: 320, damping: 30 }}
           onClick={(e) => e.stopPropagation()}
         >
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="absolute right-5 top-5 rounded-full p-1.5 text-ink-soft hover:bg-black/5"
-          >
+          <button onClick={onClose} aria-label="Close" className="absolute right-5 top-5 rounded-full p-1.5 text-ink-soft hover:bg-black/5">
             <X className="h-5 w-5" />
           </button>
 
@@ -123,12 +112,7 @@ export function LoanApplicationModal({ isOpen, onClose, presetLoanType }: Props)
                 </p>
                 <div className="mt-3 flex gap-1.5">
                   {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-1.5 flex-1 rounded-full transition-colors ${
-                        i < step ? "bg-blue" : "bg-black/10"
-                      }`}
-                    />
+                    <div key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${i < step ? "bg-blue" : "bg-black/10"}`} />
                   ))}
                 </div>
               </div>
@@ -146,14 +130,32 @@ export function LoanApplicationModal({ isOpen, onClose, presetLoanType }: Props)
                   {step === 1 && (
                     <>
                       <h3 className="font-display text-xl font-semibold">A few basics</h3>
-                      <Input label="Full Name" placeholder="Jashwanth Reddy" {...register("fullName")} error={errors.fullName?.message as string} />
-                      <Input label="Mobile Number" placeholder="98765 43210" {...register("mobile")} error={errors.mobile?.message as string} />
-                      <Input label="Email" type="email" placeholder="you@example.com" {...register("email")} error={errors.email?.message as string} />
+                      <Input
+                        label="Full Name"
+                        placeholder="Jashwanth Sheri"
+                        {...register("fullName")}
+                        error={errors.fullName?.message as string}
+                      />
+                      <Input
+                        label="Mobile Number"
+                        placeholder="98765 43210"
+                        {...register("mobile")}
+                        error={errors.mobile?.message as string}
+                      />
+                      <Input
+                        label="Email"
+                        type="email"
+                        placeholder="you@example.com"
+                        {...register("email")}
+                        error={errors.email?.message as string}
+                      />
                       <Input label="City" placeholder="Hyderabad" {...register("city")} error={errors.city?.message as string} />
                       <SelectField label="Employment Type" {...register("employmentType")} error={errors.employmentType?.message as string}>
                         <option value="">Select employment type</option>
                         {employmentTypes.map((e) => (
-                          <option key={e} value={e}>{e}</option>
+                          <option key={e} value={e}>
+                            {e}
+                          </option>
                         ))}
                       </SelectField>
                     </>
@@ -164,13 +166,35 @@ export function LoanApplicationModal({ isOpen, onClose, presetLoanType }: Props)
                       <h3 className="font-display text-xl font-semibold">About the loan</h3>
                       <SelectField label="Loan Type" {...register("loanType")} error={errors.loanType?.message as string}>
                         {loanTypes.map((t) => (
-                          <option key={t} value={t}>{t}</option>
+                          <option key={t} value={t}>
+                            {t}
+                          </option>
                         ))}
                       </SelectField>
-                      <Input label="Loan Amount (₹)" type="number" {...register("loanAmount")} error={errors.loanAmount?.message as string} />
-                      <Input label="Monthly Income (₹)" type="number" {...register("monthlyIncome")} error={errors.monthlyIncome?.message as string} />
-                      <Input label="Existing EMI (₹)" type="number" {...register("existingEmi")} error={errors.existingEmi?.message as string} />
-                      <Input label="Preferred Tenure (years)" type="number" {...register("preferredTenure")} error={errors.preferredTenure?.message as string} />
+                      <Input
+                        label="Loan Amount (₹)"
+                        type="number"
+                        {...register("loanAmount")}
+                        error={errors.loanAmount?.message as string}
+                      />
+                      <Input
+                        label="Monthly Income (₹)"
+                        type="number"
+                        {...register("monthlyIncome")}
+                        error={errors.monthlyIncome?.message as string}
+                      />
+                      <Input
+                        label="Existing EMI (₹)"
+                        type="number"
+                        {...register("existingEmi")}
+                        error={errors.existingEmi?.message as string}
+                      />
+                      <Input
+                        label="Preferred Tenure (years)"
+                        type="number"
+                        {...register("preferredTenure")}
+                        error={errors.preferredTenure?.message as string}
+                      />
                     </>
                   )}
 
@@ -178,7 +202,12 @@ export function LoanApplicationModal({ isOpen, onClose, presetLoanType }: Props)
                     <>
                       <h3 className="font-display text-xl font-semibold">Almost done</h3>
                       <Input label="Company / Business Name" {...register("companyName")} error={errors.companyName?.message as string} />
-                      <Input label="Years of Experience" type="number" {...register("yearsExperience")} error={errors.yearsExperience?.message as string} />
+                      <Input
+                        label="Years of Experience"
+                        type="number"
+                        {...register("yearsExperience")}
+                        error={errors.yearsExperience?.message as string}
+                      />
                       <Input label="Pincode" {...register("pincode")} error={errors.pincode?.message as string} />
                       <Input label="PAN Number" placeholder="ABCDE1234F" {...register("pan")} error={errors.pan?.message as string} />
                       <p className="text-xs text-ink-soft">
@@ -207,15 +236,7 @@ export function LoanApplicationModal({ isOpen, onClose, presetLoanType }: Props)
   );
 }
 
-function SuccessScreen({
-  name,
-  onClose,
-  router,
-}: {
-  name: string;
-  onClose: () => void;
-  router: ReturnType<typeof useRouter>;
-}) {
+function SuccessScreen({ name, onClose, router }: { name: string; onClose: () => void; router: ReturnType<typeof useRouter> }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -232,9 +253,7 @@ function SuccessScreen({
         <CheckCircle2 className="h-9 w-9 text-green" />
       </motion.div>
       <h3 className="font-display text-2xl font-semibold">Application Received!</h3>
-      <p className="mt-3 text-ink-soft">
-        Thank you, {name.split(" ")[0]}.
-      </p>
+      <p className="mt-3 text-ink-soft">Thank you, {name.split(" ")[0]}.</p>
       <p className="mt-1 text-ink-soft">
         Your loan assistance request has been submitted successfully.
         <br />A loan specialist will contact you shortly.
